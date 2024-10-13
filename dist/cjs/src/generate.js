@@ -45,6 +45,7 @@ const generate = async (props) => {
             options,
             _cache,
             getDynamicHeights: (value, args) => {
+                console.log("dynamic template", args.schema.type);
                 return (0, utils_1.getDynamicHeightsForTable)(value, args);
             },
         });
