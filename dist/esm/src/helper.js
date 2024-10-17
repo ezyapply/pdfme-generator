@@ -41,7 +41,7 @@ export const getEmbedPdfPages = async (arg) => {
     return { basePages, embedPdfBoxes };
 };
 export const validateRequiredFields = (template, inputs) => {
-    template.schemas.forEach((schemaPage) => schemaPage.forEach(schema => {
+    template.schemas.forEach((schemaPage) => schemaPage.forEach((schema) => {
         if (schema.required && !schema.readOnly && !inputs.some((input) => input[schema.name])) {
             throw new Error(`[@pdfme/generator] input for '${schema.name}' is required to generate this PDF`);
         }
@@ -56,7 +56,7 @@ export const preprocessing = async (arg) => {
     const pluginValues = (Object.values(userPlugins).length > 0
         ? Object.values(userPlugins)
         : Object.values(builtInPlugins));
-    const schemaTypes = schemas.flatMap(schemaPage => schemaPage.map((schema) => schema.type));
+    const schemaTypes = schemas.flatMap((schemaPage) => schemaPage.map((schema) => schema.type));
     const renderObj = schemaTypes.reduce((acc, type) => {
         const render = pluginValues.find((pv) => pv.propPanel.defaultSchema.type === type);
         if (!render) {
